@@ -1,7 +1,7 @@
-package com.jpafrota.demo.resources;
+package com.jpafrota.demo.controllers;
 
-import com.jpafrota.demo.entities.Order;
-import com.jpafrota.demo.services.OrderService;
+import com.jpafrota.demo.entities.User;
+import com.jpafrota.demo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,22 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="/orders")
-public class OrderResource {
+@RequestMapping(value="/users")
+public class UserController {
 
     @Autowired
-    private OrderService orderService;
+    private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<Order>> findAll() {
-        List<Order> list = orderService.findAll();
+    public ResponseEntity<List<User>> findAll() {
+        List<User> list = userService.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value="/{id}")
-    public ResponseEntity<Order> findById(@PathVariable Long id) {
-        Order order = orderService.findById(id);
-        return ResponseEntity.ok().body(order);
+    public ResponseEntity<User> findById(@PathVariable Long id) {
+        User user = userService.findById(id);
+        return ResponseEntity.ok().body(user);
     }
-
 }
