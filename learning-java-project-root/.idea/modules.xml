@@ -5,9 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/course-loiane-groner/course-loiane-groner.iml" filepath="$PROJECT_DIR$/course-loiane-groner/course-loiane-groner.iml" />
       <module fileurl="file://$PROJECT_DIR$/course-nelio-alves/course-nelio-alves.iml" filepath="$PROJECT_DIR$/course-nelio-alves/course-nelio-alves.iml" />
       <module fileurl="file://$PROJECT_DIR$/demo-dao-pattern/demo-dao-pattern.iml" filepath="$PROJECT_DIR$/demo-dao-pattern/demo-dao-pattern.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hibernate-demo.iml" filepath="$PROJECT_DIR$/hibernate-demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hibernate-demo.main.iml" filepath="$PROJECT_DIR$/.idea/modules/hibernate-demo.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hibernate-demo.test.iml" filepath="$PROJECT_DIR$/.idea/modules/hibernate-demo.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/multi-threading/multi-threading.iml" filepath="$PROJECT_DIR$/multi-threading/multi-threading.iml" />
       <module fileurl="file://$PROJECT_DIR$/sockets/sockets.iml" filepath="$PROJECT_DIR$/sockets/sockets.iml" />
     </modules>
