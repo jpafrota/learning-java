@@ -1,7 +1,7 @@
 package com.jpafrota.demo.config;
 
 import com.jpafrota.demo.entities.User;
-import com.jpafrota.demo.repositories.UserRepository;
+import com.jpafrota.demo.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -13,10 +13,10 @@ import java.util.Arrays;
 @Profile("test")
 public class TestConfig implements CommandLineRunner {
 
-    // Dependency injection. Spring automatically resolves this dependency.
-    // Note that UserRepository is an interface.
+    // @AutoWired: Dependency injection. Spring automatically resolves this dependency.
+    // Note that IUserRepository is an interface.
     @Autowired
-    private UserRepository userRepository;
+    private IUserRepository userRepository;
 
     @Override
     public void run(String... args) throws Exception {

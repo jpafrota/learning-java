@@ -1,7 +1,7 @@
 package com.jpafrota.demo.services;
 
 import com.jpafrota.demo.entities.User;
-import com.jpafrota.demo.repositories.UserRepository;
+import com.jpafrota.demo.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private IUserRepository userRepository;
 
     public List<User> findAll() {
         return userRepository.findAll();
