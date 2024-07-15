@@ -1,0 +1,123 @@
+Classe
+
+- Descrição de um grupo de objeto
+
+* Nome da classe
+* Conjunto de atributos (descrição)
+* Conjunto de métodos (comportamento)
+
+ex: existem várias raças e características que definem um cachorro. cachorro seria uma classe.
+possuiria nome (cachorros), atributos (cor, raça, tamanho, peso, etc) e métodos (funções usadas para manipular a classe - comportamento).
+
+Objeto
+
+- Instância de uma determinada classe.
+Exemplo, eu crio uma classe cachorro com certos atributos
+Então, um objeto seria um "indivíduo" com todos os atributos daquela classe preenchidos. 
+Ex: objeto da clase cachorro, com cor amarela, raça pug, tamanho 1m, peso 10kg.
+
+MODIFICADORES
+
+Private: faz aquele atributo / método só ser visível dentro da própria classe
+Protected (default): faz aquele atributo / método só ser visível dentro do próprio pacote
+Public: qualquer um pode ter acesso àquele atributo / método, inclusive de outros pacotes
+
+----------------- Herança --------------------
+
+https://docs.oracle.com/javase/tutorial/java/IandI/subclasses.html
+
+- Herdar atributos e métodos de uma outra classe. Uso do modificador "extends"
+EX:
+Aluno e professor possuem atributos como "nome", "endereco", "cpf" e "telefone".
+Mas os dois possuem outros atributos e métodos diferentes e exclusivos de cada um. Pode-se então agrupar os atributos em comum em uma superclasse chamada "Pessoa", onde contém nome, endereço, cpf e telefone.
+O tipo de relacionamento da classe filha para a mãe é "é um / é uma"
+Ou seja, aluno é uma pessoa e professor é uma pessoa.
+
+----------------- Polimorfismo ------------------
+
+https://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html
+
+- Polimorfismo é a capacidade de um objeto de se comportar de diferentes formas dependendo de certas características.
+
+Por exemplo,
+
+imagine a classe do tipo Animal
+
+E as subclasses Cachorro e Gato que herdam a classe acima.
+
+Todo animal tem a função comer() que retorna "chomp chomp"
+
+Cachorro e gato herdam todas essas funções também, mas pode ser que o cachorro coma de um jeito diferente. então posso >sobrescrever< o método comer() na classe cachorro, usando mesmo nome e parâmetros para mudar o comportamento da função comer e fazer com que ela retorne "nom nom".
+
+Declarando Animal myAnimal1 = new Cachorro();
+
+quando for chamada a funcao myAnimal1.comer();
+
+a saída retornará "nom nom" pois o método foi sobrescrito.
+
+também pode-se declarar Cachorro myAnimal2 = new Cachorro();
+
+também terá todas as funções acima e a saída de comer() retornará "nom nom"
+porém, desta forma myAnimal2 pode acessar métodos e atributos únicos que existem em Cachorro mas não em Animal.
+
+UMA RESPOSTA MUITO LEGAL Q UM CARA ME MANDOU NO YOUTUBE: 
+
+===========================================================================
+
+Great question! You can certainly do both, and using the superclass as the type has the limitations you noted. 
+Most of the time, you're just fine using the SubClass as the type, as you describe how you usually do it. However, there are situations where it makes sense to use the superclass, such as specifically when there is a polymorphic method like you noted. 
+
+Let's say you had an Instrument super class, and a bunch of sub classes of Instrument like Guitar, Trombone, Drum, etc. 
+Your Instrument class could have a play() method that makes a sound, and all subclasses would override that method with their own implementation.
+
+You could write a method that looks like this:
+
+void playSound (Instrument instrument){
+  System.out.println("Playing my sound: " + instrument.play());
+}
+
+This method doesn't know and doesn't care what type of instrument is passed in - it just needs it to be an Instrument, so that it knows it can call its play() method. 
+
+If you want to use that playSound() method in that kind of situation, you have to create your instrument like:
+
+Instrument drum = new Drum();
+playSound(drum);
+
+
+When working with collections, you'll probably run into similar situations, just with Interfaces instead of superclasses.
+
+For example, ArrayList is an implementation of the List interface. So usually when declaring an ArrayList, you should do this:
+List<String> names = new ArrayList<>();
+
+This list happens to use an ArrayList as its underlying implementation, but any method that takes a List of Strings doesn't care whether you use an ArrayList, or LinkedList, or whatever. Then you can have a method like this:
+void printNames (List<String> nameList) {
+   ...
+}
+
+Similar to the playSound() method above, this method doesn't care whether you used an ArrayList or some other kind of List implementation - it just needs to know it's some kind of List to do what it has to do. And the user of the method can use whatever type of List they want to use for their particular situation.
+
+That's a very long answer, but hope it helps clarify it a bit!
+
+==================================================================
+
+OVERRIDING:
+Sobrescrever métodos da classe pai na classe atual.
+
+OVERLOADING:
+Sobrescrever métodos da mesma classe, com o mesmo nome, mas diferentes parâmetros (também pode-se usar diferentes tipos de retorno, desde que os parâmetros sejam alterados obrigatoriamente).
+
+operador "instanceof" é usado para verificar qual o tipo da variável, tanto tipo primitivo como classe.
+
+====================================================================
+
+INTERFACES
+
+Esse elemento em Java é como se fosse uma classe abstrata, porém apenas com constantes e declarações de métodos que DEVEM ser sobrescritos pelas classes que implementam essa interface.
+Não se pode implementar métodos direto em uma interface.
+Um objeto pode implementar várias interfaces, mas herdar apenas uma classe.
+
+public interface DimensaoSuperficial {}
+public interface DimensaoVolumetrica {}
+
+public abstract class Figura3D extends FiguraGeometrica implements DimensaoSuperficial, DimensaoVolumetrica{}
+
