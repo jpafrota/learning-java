@@ -3,6 +3,8 @@ package com.jpafrota.demo.entities;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jpafrota.demo.entities.enums.OrderStatus;
+import com.jpafrota.demo.entities.enums.OrderStatusConverter;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -20,6 +22,9 @@ public class Order implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
 
+    @Convert(converter = OrderStatusConverter.class)
+    private OrderStatus orderStatus;
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     @JsonIgnore
@@ -27,9 +32,10 @@ public class Order implements Serializable {
 
     public Order() {}
 
-    public Order(Integer id, Instant moment, User client) {
+    public Order(Integer id, Instant moment, OrderStatus orderStatus, User client) {
         this.id = id;
         this.moment = moment;
+        this.orderStatus = orderStatus;
         this.client = client;
     }
 
@@ -47,6 +53,14 @@ public class Order implements Serializable {
 
     public void setMoment(Instant moment) {
         this.moment = moment;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public User getClient() {
