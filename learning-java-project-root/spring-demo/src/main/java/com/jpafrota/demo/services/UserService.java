@@ -2,6 +2,7 @@ package com.jpafrota.demo.services;
 
 import com.jpafrota.demo.entities.User;
 import com.jpafrota.demo.repositories.IUserRepository;
+import com.jpafrota.demo.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class UserService {
 
     public User findById(Long id) {
         Optional<User> obj = userRepository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public User insert(User user) {
@@ -29,5 +30,17 @@ public class UserService {
 
     public void delete(Long id) {
         userRepository.deleteById(id);
+    }
+
+    public User update(Long id, User obj) {
+        User entity = userRepository.getReferenceById(id);
+        updateData(entity, obj);
+        return userRepository.save(entity);
+    }
+
+    private void updateData(User entity, User obj) {
+        entity.setName(obj.getName());
+        entity.setEmail(obj.getEmail());
+        entity.setPhone(obj.getPhone());
     }
 }
