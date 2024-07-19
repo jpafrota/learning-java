@@ -34,6 +34,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private IOrderItemRepository orderItemRepository;
 
+    @Autowired
+    private IPaymentRepository paymentRepository;
+
     @Override
     public void run(String... args) throws Exception {
         User u1 = new User(null, "Jorge", "jpafrota@mot.com", "92984191630", "senha123");
@@ -73,6 +76,13 @@ public class TestConfig implements CommandLineRunner {
         OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
 
         orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+
+        // In order to save the payment, which is a one to one dependant class,
+        // We need to save it in the mapping class, then save wih its repository.
+        Payment pay1 = new Payment(null, Instant.parse("2024-06-20T21:53:07Z"), o1);
+        o1.setPayment(pay1);
+
+        orderRepository.save(o1);
 
         // Optional<Order> obj = orderRepository.findById(1L);
         // System.out.println(obj.get().getOrderStatus() == OrderStatus.PAID);

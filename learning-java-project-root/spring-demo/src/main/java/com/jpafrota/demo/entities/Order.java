@@ -35,6 +35,11 @@ public class Order implements Serializable {
     @OneToMany(mappedBy = "id.order")
     private final Set<OrderItem> items = new HashSet<>();
 
+    // Cascade.ALL means that payment will have order_id as its id
+    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Payment payment;
+
     public Order() {}
 
     public Order(Integer id, Instant moment, OrderStatus orderStatus, User client) {
@@ -83,6 +88,18 @@ public class Order implements Serializable {
     // Add this method to get client_id
     public Long getClientId() {
         return client != null ? client.getId() : null;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
+
+    public Double getTotal() {
+        return getItems().stream().map(OrderItem::getSubTotal).reduce(0.0, Double::sum);
     }
 
     @Override
