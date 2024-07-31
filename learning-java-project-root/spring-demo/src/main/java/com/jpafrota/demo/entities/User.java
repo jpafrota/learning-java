@@ -1,8 +1,6 @@
 package com.jpafrota.demo.entities;
 
 import jakarta.persistence.*;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import java.io.Serializable;
 import java.util.ArrayList;
